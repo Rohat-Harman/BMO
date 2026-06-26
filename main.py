@@ -1,5 +1,6 @@
 import requests
 
+
 MODEL = "llama3.2"
 OLLAMA_URL = "http://localhost:11434/api/generate"
 
@@ -17,6 +18,7 @@ def build_prompt(personality, conversation_history):
 
     prompt = f"""
 {personality}
+
 
 Conversation:
 {history_text}
@@ -38,13 +40,16 @@ def ask_bmo(conversation_history):
         }
     )
 
+
     data = response.json()
     return data["response"].strip()
 
 
 print("BMO is awake! Type 'exit' to quit.")
 
+
 conversation_history = []
+
 
 while True:
     user_message = input("You: ")
@@ -52,15 +57,25 @@ while True:
     if user_message.lower() in ["exit", "quit", "çık", "cik"]:
         print("BMO: Bye bye friend! 🎮")
         break
+    
+
+    if user_message.lower() == "/clear":
+        conversation_history = []
+        print("BMO: Memory cleared! 🎮")
+        continue
+
 
     conversation_history.append({
         "role": "User",
         "content": user_message
     })
 
+
     bmo_answer = ask_bmo(conversation_history)
 
+
     print("BMO:", bmo_answer)
+
 
     conversation_history.append({
         "role": "BMO",
