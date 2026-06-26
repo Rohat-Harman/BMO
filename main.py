@@ -31,14 +31,18 @@ def ask_bmo(conversation_history):
     personality = load_personality()
     prompt = build_prompt(personality, conversation_history)
 
-    response = requests.post(
+    
+    try:
+        response = requests.post(
         OLLAMA_URL,
         json={
-            "model": MODEL,
+            "model": MODEL_NAME,
             "prompt": prompt,
             "stream": False
         }
     )
+    except:
+        return "Unable to connect to Ollama."
 
 
     data = response.json()
