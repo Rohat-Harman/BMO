@@ -1,4 +1,5 @@
 import requests
+from voice.speaker import speak
 
 
 MODEL = "llama3.2"
@@ -36,14 +37,14 @@ def ask_bmo(conversation_history):
         response = requests.post(
         OLLAMA_URL,
         json={
-            "model": MODEL_NAME,
+            "model": MODEL,
             "prompt": prompt,
             "stream": False
         }
     )
     except Exception as e:
         print(f"Error occurred: {e}")
-        return "Unable to connect to Ollama."
+        return "Oops! BMO can't think right now... Maybe a little nap will help!"
     
 
 
@@ -80,8 +81,7 @@ while True:
     bmo_answer = ask_bmo(conversation_history)
 
 
-    print("BMO:", bmo_answer)
-
+    speak(f"BMO: {bmo_answer}")
 
     conversation_history.append({
         "role": "BMO",
