@@ -41,8 +41,10 @@ def ask_bmo(conversation_history):
             "stream": False
         }
     )
-    except:
+    except Exception as e:
+        print(f"Error occurred: {e}")
         return "Unable to connect to Ollama."
+    
 
 
     data = response.json()
