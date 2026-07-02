@@ -1,7 +1,7 @@
-from tkinter.filedialog import test
 
 
-def speak(test):
+
+def speak(text):
 
     """
     Makes BMO speak.
@@ -10,4 +10,4 @@ def speak(test):
     Later, this function will generate BMO's voice.
 
     """
-    print(test)
+    print(text)
