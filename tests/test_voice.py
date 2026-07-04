@@ -1,3 +1,3 @@
-from pykokoro import KokoroPipeline
+from pykokoro import PipelineConfig
 
-print(KokoroPipeline)
+print(PipelineConfig)
