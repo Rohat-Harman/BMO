@@ -1,5 +1,6 @@
 import requests
 from voice.speaker import speak
+import time
 
 
 MODEL = "llama3.2"
