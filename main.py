@@ -35,6 +35,8 @@ def ask_bmo(conversation_history):
 
     
     try:
+        start_time = time.time()
+
         response = requests.post(
         OLLAMA_URL,
         json={
@@ -50,6 +52,7 @@ def ask_bmo(conversation_history):
 
 
     data = response.json()
+    print(f"Ollama response time: {time.time() - start_time:.2f} seconds")
     return data["response"].strip()
 
 
@@ -81,8 +84,8 @@ while True:
 
     bmo_answer = ask_bmo(conversation_history)
 
-
-    speak(f"BMO: {bmo_answer}")
+    print(f"BMO: {bmo_answer}")
+    speak(bmo_answer)
 
     conversation_history.append({
         "role": "BMO",
